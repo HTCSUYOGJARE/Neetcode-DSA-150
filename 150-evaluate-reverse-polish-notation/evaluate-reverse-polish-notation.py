@@ -12,11 +12,11 @@ class Solution(object):
                 b=stack.pop()
                 a=stack.pop()
                 if i=="+":
-                    stack.append(int(a)+int(b))
+                    stack.append(a+b)
                 elif i=="-":
-                    stack.append(int(a)-int(b))
+                    stack.append(a-b)
                 elif i=="*":
-                    stack.append(int(a)*int(b))
+                    stack.append(a*b)
                 elif i=="/":
-                    stack.append(int(float(a)/int(b)))
+                    stack.append(int(float(a)/b))
         return stack[-1]
