@@ -4,7 +4,7 @@ class Solution(object):
         :type tokens: List[str]
         :rtype: int
         """
-        stack=deque()
+        stack=[]
         for i in tokens:
             if (i !="+" and i!="-" and i!="/" and i!="*"):
                 stack.append(int(i))
