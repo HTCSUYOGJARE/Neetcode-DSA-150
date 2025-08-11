@@ -18,5 +18,5 @@ class Solution(object):
                 elif i=="*":
                     stack.append(a*b)
                 elif i=="/":
-                    stack.append(int(float(a)/b))
+                    stack.append(int(float(a)/b)) # truncate towards 0 is needed so float is used
         return stack[-1]
