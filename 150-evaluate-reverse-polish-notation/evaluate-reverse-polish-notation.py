@@ -1,9 +1,5 @@
-class Solution(object):
-    def evalRPN(self, tokens):
-        """
-        :type tokens: List[str]
-        :rtype: int
-        """
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
         stack=[]
         for i in tokens:
             if (i !="+" and i!="-" and i!="/" and i!="*"):
@@ -18,5 +14,5 @@ class Solution(object):
                 elif i=="*":
                     stack.append(a*b)
                 elif i=="/":
-                    stack.append(int(float(a)/b)) # truncate towards 0 is needed so float is used
+                    stack.append(int((a)/b)) # truncate towards 0 is needed so float is used
         return stack[-1]
