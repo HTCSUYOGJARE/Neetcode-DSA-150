@@ -12,8 +12,11 @@ class Solution:
         while fast and fast.next:
             slow=slow.next
             fast=fast.next.next
-        second = slow.next
-        slow.next = None 
+        
+        second = slow.next #taking the only second half of linkedlist
+        slow.next = None  #cutting off the link between first and second half
+
+        # firstly reversing the second half of linked list
         prev,curr=None,second
         while curr:
             temp =curr.next
@@ -21,6 +24,7 @@ class Solution:
             prev=curr
             curr=temp
         
+        #using the reversed second half and the normal first half, merging them alternately
         forward,reverse=head,prev
         while reverse:
             temp_for=forward.next
