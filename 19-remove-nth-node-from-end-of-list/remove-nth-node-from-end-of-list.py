@@ -5,23 +5,30 @@
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        # first lets get the length of the singly-linked list
         l=0
         curr=head
         while curr:
             l+=1
             curr=curr.next
-        if l==n:
-            nxt=head.next
-            head=nxt
+
+        # # if the n == l means it says to remove the first element of linkedlist. cant be handeled by index so handeling seperately
+        # if l==n:
+        #     nxt=head.next
+        #     head=nxt
+
+        # get the index from start at which we need to skip the next node
         index = l-n-1
         i=0
         cur=head
-        while cur and cur.next:
+        while cur:
             if i==index:
                 temp = cur.next.next
                 cur.next=temp
                 cur=cur.next
                 i+=1
+            elif index==-1:
+                return head.next
             else:
                 cur=cur.next
                 i+=1
