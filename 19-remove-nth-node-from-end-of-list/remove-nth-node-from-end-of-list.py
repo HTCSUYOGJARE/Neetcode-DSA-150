@@ -12,7 +12,7 @@ class Solution:
             curr=curr.next
         if l==n:
             nxt=head.next
-            head=head.next
+            head=nxt
         index = l-n-1
         i=0
         cur=head
