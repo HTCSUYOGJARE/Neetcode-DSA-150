@@ -12,11 +12,6 @@ class Solution:
             l+=1
             curr=curr.next
 
-        # # if the n == l means it says to remove the first element of linkedlist. cant be handeled by index so handeling seperately
-        # if l==n:
-        #     nxt=head.next
-        #     head=nxt
-
         # get the index from start at which we need to skip the next node
         index = l-n-1
         i=0
@@ -27,7 +22,7 @@ class Solution:
                 cur.next=temp
                 cur=cur.next
                 i+=1
-            elif index==-1:
+            elif index==-1: # if n==l (index=n-l-1--> -1) means to remove first node of linked list then directly return head.next
                 return head.next
             else:
                 cur=cur.next
