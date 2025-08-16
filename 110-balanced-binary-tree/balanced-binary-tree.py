@@ -8,13 +8,13 @@ class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         self.check_balance = True
         def depth(node):
-            if not node or not self.check_balance:
+            if not node or not self.check_balance: # once imbalance detected stop further recursion
                 return 0
             left_node_depth =depth(node.left)
             right_node_depth = depth(node.right)
             if abs(left_node_depth-right_node_depth)>1:
                 self.check_balance=False
-                return 0
+                return 0 #as imbalace detected return 0 and avoid further logic
             return 1 + max(right_node_depth,left_node_depth)
         s=depth(root)
         return self.check_balance
