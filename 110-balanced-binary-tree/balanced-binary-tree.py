@@ -14,6 +14,7 @@ class Solution:
             right_node_depth = depth(node.right)
             if abs(left_node_depth-right_node_depth)>1:
                 self.check_balance=False
+                return 0
             return 1 + max(right_node_depth,left_node_depth)
         s=depth(root)
         return self.check_balance
