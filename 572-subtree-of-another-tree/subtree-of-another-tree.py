@@ -1,28 +1,23 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        def check(root,subroot):
-            if not root:
-                return deque()
-            stack =deque([root])
-            match_stack=deque()
-            while stack:
-                node = stack.popleft()
-                if node.val == subroot.val:
-                    match_stack.append(node)
-                if node.left:
-                    stack.append(node.left)
-                if node.right:
-                    stack.append(node.right)
-            return match_stack
-        def match(p,q):
-            if not p and not q: return True
-            if not p or not q: return False
-            return p.val==q.val and match(p.left,q.left) and match(p.right,q.right)
-        candidates = check(root,subRoot)
-        return any (match(node,subRoot) for node in candidates)
+        if not subRoot:  # empty subRoot is always a subtree
+            return True
+        if not root:     # main tree is empty but subRoot not
+            return False
+
+        def isSame(p, q):
+            if not p and not q:
+                return True
+            if not p or not q:
+                return False
+            return p.val == q.val and isSame(p.left, q.left) and isSame(p.right, q.right)
+
+        # BFS / DFS traversal of root
+        def dfs(node):
+            if not node:
+                return False
+            if node.val == subRoot.val and isSame(node, subRoot):
+                return True
+            return dfs(node.left) or dfs(node.right)
+
+        return dfs(root)
