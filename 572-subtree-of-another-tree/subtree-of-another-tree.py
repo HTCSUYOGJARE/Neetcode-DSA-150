@@ -14,7 +14,7 @@ class Solution:
 
         # BFS / DFS traversal of root
         def dfs(node):
-            if not node:
+            if not node and subRoot:
                 return False
             if node.val == subRoot.val and isSame(node, subRoot):
                 return True
