@@ -6,8 +6,8 @@
 #         self.right = None
 
 class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-                #Its a BST so check p and q with root
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        #Its a BST so check p and q with root
         if (p.val<=root.val and q.val>=root.val) or (p.val>=root.val and q.val<=root.val):
             return root
         if p.val<root.val and q.val<root.val: # if bot p and q are lesser than root then search in left of root only
