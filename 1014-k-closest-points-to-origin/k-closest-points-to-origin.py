@@ -7,10 +7,11 @@ class Solution:
         heap =[]
         for j in points:
             dist = (((j[0])**2)+((j[1])**2))**(1/2)
-            heapq.heappush(heap,[dist,j])
+            heap.append([dist,j])
+        heapq.heapify(heap)
         # this gets us the min heap based on the value that is dist. to origin
         res=[]
         for i in range(k):
             point = heapq.heappop(heap)
-            res.append(point[1]) # key in dict was tsored as tuple so converted back to list
+            res.append(point[1]) 
         return res
