@@ -11,3 +11,6 @@ class Solution:
             point = heapq.heappop(heap)
             res.append(point[1]) 
         return res
+
+# Using simple dictionary migh seem a simpler approach to this but the issue is there are same points repeated multiple times but dictionary only stores 1 unique point and no repeation considered so used heap
+         
