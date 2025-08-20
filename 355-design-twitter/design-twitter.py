@@ -2,12 +2,17 @@ class Twitter:
 
     def __init__(self):
         self.follow_dict = defaultdict(set) # store the userid and set of its followees(whom the user follows)
-        self.tweets_dict = defaultdict(list) # stores user id and list of its TweetIDs
+        self.tweets_dict = defaultdict(deque) # stores user id and list of its TweetIDs
         self.time_stamp=0
     def postTweet(self, userId: int, tweetId: int) -> None:
-        self.follow_dict[userId].add(userId)
-        self.tweets_dict[userId].append([self.time_stamp,tweetId])
-        self.time_stamp+=1
+        if len(self.tweets_dict[userId])<20:
+            self.follow_dict[userId].add(userId)
+            self.tweets_dict[userId].append([self.time_stamp,tweetId])
+            self.time_stamp+=1
+        else:
+            self.tweets_dict[userId].popleft()
+            self.tweets_dict[userId].append([self.time_stamp,tweetId])
+            self.time_stamp+=1
     def getNewsFeed(self, userId: int) -> List[int]:
         tweets_list =[]
         for i in self.follow_dict[userId]:
