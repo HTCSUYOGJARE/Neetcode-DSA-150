@@ -27,7 +27,8 @@ class Twitter:
         self.follow_dict[followerId].add(followeeId)
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        self.follow_dict[followerId].discard(followeeId)
+        if followerId != followeeId:
+            self.follow_dict[followerId].discard(followeeId)
 
 
 # Your Twitter object will be instantiated and called as such:
