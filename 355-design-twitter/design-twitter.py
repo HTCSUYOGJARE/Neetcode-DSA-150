@@ -5,7 +5,7 @@ class Twitter:
         self.tweets_dict = defaultdict(deque) # stores user id and list of its TweetIDs
         self.time_stamp=0
     def postTweet(self, userId: int, tweetId: int) -> None:
-        if len(self.tweets_dict[userId])<20:
+        if len(self.tweets_dict[userId])<11:
             self.follow_dict[userId].add(userId)
             self.tweets_dict[userId].append([self.time_stamp,tweetId])
             self.time_stamp+=1
