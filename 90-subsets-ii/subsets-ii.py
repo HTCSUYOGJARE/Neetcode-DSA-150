@@ -9,8 +9,8 @@ class Solution:
             subset.append(nums[i])
             DFS(i+1,subset)
             subset.pop()
-            # while i+1<len(nums) and nums[i]==nums[i+1]:
-            #     i+=1
+            while i+1<len(nums) and nums[i]==nums[i+1]:
+                i+=1
             DFS(i+1,subset)
         DFS(0,[])
         return [list(x) for x in res]
