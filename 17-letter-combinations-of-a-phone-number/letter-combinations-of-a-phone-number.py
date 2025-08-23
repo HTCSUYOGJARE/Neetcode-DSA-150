@@ -16,10 +16,9 @@ class Solution:
             if len(curr)==len(digits):
                 res.append(curr)
                 return
+
             for j in digitToChar[digits[i]]:
-                curr+=j
-                backtrack(i+1,curr)
-                curr = curr[:-1]
+                backtrack(i+1,curr+j)
 
         if digits:
             backtrack(0,"")
