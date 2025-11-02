@@ -1,26 +1,15 @@
-class Solution(object):
-    def isAnagram(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
-        if len(s)!=len(t):
-            return False
-        S ={}
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        s_dict = {}
         for i in s:
-            if i not in S:
-                S[i]=1
+            if i in s_dict:
+                s_dict[i]+=1
             else:
-                S[i]+=1
-        R={}
-        for i in t:
-            if i not in R:
-                R[i]=1
+                s_dict[i]=1
+        t_dict = {}
+        for j in t:
+            if j in t_dict:
+                t_dict[j]+=1
             else:
-                R[i]+=1
-        if S==R:
-            return True
-        else:
-            return False
-        
+                t_dict[j]=1
+        return s_dict == t_dict
