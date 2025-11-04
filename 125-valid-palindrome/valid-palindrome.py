@@ -1,8 +1,14 @@
-class Solution(object):
-    def isPalindrome(self, s):
-        cleaned_s = ''.join([char for char in s if char.isalnum()])
-        S = cleaned_s.lower()
-        n = len(S)
-        Output = all(S[i] == S[-(i+1)] for i in range(n//2))
-        return Output
-        
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        res = "".join(char for char in s if char.isalnum())
+        res = res.lower()
+        i=0
+        j=len(res)-1
+        while i<j:
+            if res[j]==res[i]:
+                i+=1
+                j-=1
+            else:
+                return False
+                
+        return True
