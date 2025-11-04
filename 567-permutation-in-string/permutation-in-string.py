@@ -1,37 +1,21 @@
-class Solution(object):
-    def checkInclusion(self, s1, s2):
-        """
-        :type s1: str
-        :type s2: str
-        :rtype: bool
-        """
-        if len(s1)>len(s2):
-            return False
-        s1cnt=[0]*26
-        s2cnt=[0]*26
-        for i in range(len(s1)):
-            s1cnt[ord(s1[i])-ord('a')]+=1
-            s2cnt[ord(s2[i])-ord('a')]+=1
-        matches=0
-        for i in range(26):
-            matches+=(1 if s1cnt[i]==s2cnt[i] else 0)
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
         l=0
-        for r in range(len(s1),len(s2)):
-            if matches==26:
+        r=len(s1)-1
+        S1 = defaultdict(int)
+        for i in s1:
+            S1[i]+=1
+        while r<len(s2):
+            S2 = defaultdict(int)
+            for j in range(l,r+1):
+                S2[s2[j]]+=1
+            if S2==S1:
                 return True
+            else:
+                r+=1
+                l+=1
+        return False
+                    
+            
 
-            index=ord(s2[r])-ord("a")
-            s2cnt[index]+=1
-            if s1cnt[index]==s2cnt[index]:
-                matches+=1
-            elif s1cnt[index]+1==s2cnt[index]:
-                matches-=1
 
-            index=ord(s2[l])-ord("a")
-            s2cnt[index]-=1
-            if s1cnt[index]==s2cnt[index]:
-                matches+=1
-            elif s1cnt[index]-1==s2cnt[index]:
-                matches-=1
-            l+=1
-        return matches==26
