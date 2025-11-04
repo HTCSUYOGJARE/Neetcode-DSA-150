@@ -1,21 +1,17 @@
-class Solution(object):
-    def trap(self, height):
-        """
-        :type height: List[int]
-        :rtype: int
-        """
-        prefix=0
-        suffix=0
-        pre=[0]*len(height)
-        for i in range(len(height)):
-            pre[i]=prefix
-            prefix = max(prefix,height[i])
-        suf=[0]*len(height)
-        for j in range(len(height)-1,-1,-1):
-            suf[j]=suffix
-            suffix = max(suffix,height[j])
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        l=0
+        r=len(height)-1
+        leftmax=height[l]
+        rightmax=height[r]
         res=0
-        for i in range(len(height)):
-            if (min(pre[i],suf[i])-height[i])>=0:
-                res+=(min(pre[i],suf[i])-height[i])
+        while l<r:
+            if leftmax<rightmax:
+                l+=1
+                leftmax = max(leftmax,height[l])
+                res+=leftmax-height[l]
+            else:
+                r-=1
+                rightmax = max(rightmax,height[r])
+                res+=rightmax-height[r]
         return res
