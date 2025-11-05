@@ -1,18 +1,29 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        stack=[]
+        stack= deque()
         for i in tokens:
-            if (i !="+" and i!="-" and i!="/" and i!="*"):
-                stack.append(int(i))
-            else:
-                b=stack.pop()
-                a=stack.pop()
-                if i=="+":
-                    stack.append(a+b)
-                elif i=="-":
-                    stack.append(a-b)
-                elif i=="*":
+            if i == "+":
+                if stack:
+                    a=stack.pop()
+                    b=stack.pop()
+                    stack.append(int(a)+int(b))
+            elif i == "-":
+                if stack:
+                    a=stack.pop()
+                    b=stack.pop()
+                    stack.append(b-a)
+            elif i == "*":
+                if stack:
+                    a=stack.pop()
+                    b=stack.pop()
                     stack.append(a*b)
-                elif i=="/":
-                    stack.append(int(a/b)) # truncate towards 0 is needed so float is used
-        return stack[-1]
+            elif i == "/":
+                if stack:
+                    a=stack.pop()
+                    b=stack.pop()
+                    val = b/a
+                    stack.append(int(val))
+            else:
+                stack.append(int(i))
+        return stack[0]
+        
